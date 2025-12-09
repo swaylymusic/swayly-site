@@ -36,7 +36,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("../assets/images/hero-bg.jpg") center/cover no-repeat;
+  background: url("../assets/images/hero_bg.jpg") center/cover no-repeat;
   filter: brightness(0.45);
 }
 
@@ -311,4 +311,5 @@ body {
     display: block;
     margin-bottom: 10px;
 }
+
 

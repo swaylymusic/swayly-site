@@ -1,172 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Latest Releases – Swayly Music</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description"
-        content="Discover the latest cozy jazz and ambient piano releases from Swayly Music.">
-  <link rel="stylesheet" href="css/main.css">
-
-  <style>
-    /* 카드 hover 효과 */
-    .video-card {
-      background: #111;
-      border-radius: 14px;
-      overflow: hidden;
-      transition: transform .25s ease, box-shadow .25s ease;
-      cursor: pointer;
-    }
-    .video-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.35);
-    }
-
-    .video-thumb {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .video-info {
-      padding: 16px 18px;
-    }
-
-    .video-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #fff;
-    }
-
-    .video-meta {
-      font-size: 0.85rem;
-      opacity: 0.8;
-      margin-bottom: 8px;
-    }
-
-    .video-desc {
-      font-size: 0.9rem;
-      opacity: 0.75;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Swayly Music – Latest Releases</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+        .video-card {
+            background: #111722;
+            border-radius: 12px;
+            padding: 16px;
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .video-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+        }
+        .video-thumb {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+        .video-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .video-date {
+            font-size: 14px;
+            color: #9aa4b2;
+        }
+    </style>
 </head>
+
 <body>
 
 <header class="site-header">
   <div class="header-inner">
-    <div class="header-top">
-      <div class="brand-mark">Swayly Music</div>
-      <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About / Philosophy</a>
-        <a href="releases.html" class="active">Latest Releases</a>
-        <a href="playlist.html">Playlist Library</a>
-        <a href="contact.html">Contact & Licensing</a>
-      </nav>
-    </div>
-    <div class="header-main">
-      <h1>Latest Releases</h1>
-      <p>Cozy tracks to keep close to your quiet days.</p>
-    </div>
+    <h1>Newest uploads</h1>
+    <p>Automatically updated with the latest videos from Swayly Music.</p>
   </div>
 </header>
 
 <main class="page-wrap">
+    <section class="section">
+        <div id="videoContainer" class="video-grid"></div>
+    </section>
 
-  <section class="section">
-    <div class="section-label">Releases</div>
-    <h2 class="section-title">Newest uploads</h2>
-    <p class="section-subtitle">
-      Automatically updated with the latest videos from Swayly Music.
-    </p>
+    <script>
+        const WORKER_URL = "https://swayly-youtube.donlee-realtor.workers.dev";
 
-    <!-- 자동 카드 로드 위치 -->
-    <div id="video-grid" class="card-grid"></div>
-  </section>
+        async function loadVideos() {
+            try {
+                const res = await fetch(WORKER_URL);
+                const videos = await res.json();
 
-  <footer class="site-footer">
-    <span>© 2025 Swayly Music.</span>
-    <span>Follow on YouTube & Spotify for new releases.</span>
-  </footer>
+                const container = document.getElementById("videoContainer");
+                container.innerHTML = "";
 
+                videos.forEach(video => {
+                    const date = new Date(video.publishedAt);
+                    const relativeTime = timeAgo(date);
+
+                    container.innerHTML += `
+                        <div class="video-card">
+                            <img class="video-thumb" src="${video.thumbnail}" alt="">
+                            <div class="video-title">${video.title}</div>
+                            <div class="video-date">${relativeTime}</div>
+                        </div>
+                    `;
+                });
+
+            } catch (e) {
+                document.getElementById("videoContainer").innerHTML = "<p>Failed to load videos.</p>";
+            }
+        }
+
+        function timeAgo(date) {
+            const seconds = Math.floor((new Date() - date) / 1000);
+            const intervals = [
+                { label: "year", seconds: 31536000 },
+                { label: "month", seconds: 2592000 },
+                { label: "day", seconds: 86400 },
+                { label: "hour", seconds: 3600 },
+                { label: "minute", seconds: 60 }
+            ];
+
+            for (const interval of intervals) {
+                const count = Math.floor(seconds / interval.seconds);
+                if (count > 0) {
+                    return `${count} ${interval.label}${count > 1 ? "s" : ""} ago`;
+                }
+            }
+            return "Just now";
+        }
+
+        loadVideos();
+    </script>
 </main>
 
-<script>
-  const API_URL = "https://swayly-youtube.donlee-realtor.workers.dev";
-
-  // 숫자를 12,392 views 형태로 변환
-  function formatNumber(num) {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-
-  // 날짜 → "2 days ago"
-  function timeAgo(dateStr) {
-    const diff = (new Date() - new Date(dateStr)) / 1000;
-    const days = Math.floor(diff / 86400);
-    if (days < 1) return "Today";
-    if (days === 1) return "1 day ago";
-    return `${days} days ago`;
-  }
-
-  // 영상 길이(ISO 8601 → 3:18)
-  function formatDuration(iso) {
-    if (!iso) return "";
-    const match = iso.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
-    let h = (match[1] || "").replace("H", "");
-    let m = (match[2] || "").replace("M", "");
-    let s = (match[3] || "").replace("S", "");
-    h = h || 0; m = m || 0; s = s || 0;
-
-    if (h > 0) return `${h}:${m.toString().padStart(2,"0")}:${s.toString().padStart(2,"0")}`;
-    return `${m}:${s.toString().padStart(2,"0")}`;
-  }
-
-  async function loadVideos() {
-    const grid = document.getElementById("video-grid");
-
-    try {
-      const res = await fetch(API_URL);
-      const list = await res.json();
-
-      grid.innerHTML = "";
-
-      list.forEach(v => {
-        const card = document.createElement("article");
-        card.className = "video-card";
-
-        card.innerHTML = `
-          <a href="https://www.youtube.com/watch?v=${v.videoId}" target="_blank">
-            <img class="video-thumb" src="${v.thumbnail}" alt="">
-          </a>
-          <div class="video-info">
-            <div class="video-title">${v.title}</div>
-
-            <div class="video-meta">
-              ${formatNumber(v.views)} views ·
-              ${formatDuration(v.duration)} ·
-              ${timeAgo(v.publishedAt)}
-            </div>
-
-            <div class="video-desc">${v.description || ""}</div>
-          </div>
-        `;
-
-        grid.appendChild(card);
-      });
-
-    } catch (err) {
-      grid.innerHTML = "<p>Failed to load videos.</p>";
-      console.error(err);
-    }
-  }
-
-  loadVideos();
-</script>
+<footer class="site-footer">
+    <span>© 2025 Swayly Music.</span>
+</footer>
 
 </body>
 </html>

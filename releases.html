@@ -7,6 +7,53 @@
   <meta name="description"
         content="Discover the latest cozy jazz and ambient piano releases from Swayly Music.">
   <link rel="stylesheet" href="css/main.css">
+
+  <style>
+    /* 카드 hover 효과 */
+    .video-card {
+      background: #111;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease;
+      cursor: pointer;
+    }
+    .video-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.35);
+    }
+
+    .video-thumb {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .video-info {
+      padding: 16px 18px;
+    }
+
+    .video-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .video-meta {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      margin-bottom: 8px;
+    }
+
+    .video-desc {
+      font-size: 0.9rem;
+      opacity: 0.75;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
 </head>
 <body>
 
@@ -33,53 +80,93 @@
 
   <section class="section">
     <div class="section-label">Releases</div>
-    <h2 class="section-title">Recent projects</h2>
+    <h2 class="section-title">Newest uploads</h2>
     <p class="section-subtitle">
-      Update these cards whenever a new track or playlist goes live on Spotify or YouTube.
+      Automatically updated with the latest videos from Swayly Music.
     </p>
 
-    <div class="card-grid">
-      <!-- 카드들은 필요에 따라 복사해서 더 만들 수 있음 -->
-      <article class="card">
-        <img src="assets/images/release-1.jpg" alt="The Night Breathes Slow cover">
-        <h3 class="card-title">The Night Breathes Slow</h3>
-        <div class="card-meta">Single · Winter jazz</div>
-        <p>A slow, breathing jazz ballad for late city walks and quiet windows.</p>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Spotify</a>
-          <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">YouTube</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <img src="assets/images/release-2.jpg" alt="Snow Hums a Lullaby cover">
-        <h3 class="card-title">Snow Hums a Lullaby</h3>
-        <div class="card-meta">Single · Piano lullaby</div>
-        <p>Gentle piano and soft tape warmth, written for snowy evenings and warm lamps.</p>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Spotify</a>
-          <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">YouTube</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <img src="assets/images/release-3.jpg" alt="Quiet Desk Jazz cover">
-        <h3 class="card-title">Quiet Desk Jazz</h3>
-        <div class="card-meta">Playlist · Study & focus</div>
-        <p>Slow swing and muted tones, made to sit quietly beside deep work.</p>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Spotify</a>
-          <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">YouTube</a>
-        </div>
-      </article>
-    </div>
+    <!-- 자동 카드 로드 위치 -->
+    <div id="video-grid" class="card-grid"></div>
   </section>
 
   <footer class="site-footer">
     <span>© 2025 Swayly Music.</span>
-    <span>Follow along on Spotify & YouTube for new releases.</span>
+    <span>Follow on YouTube & Spotify for new releases.</span>
   </footer>
 
 </main>
+
+<script>
+  const API_URL = "https://swayly-youtube.donlee-realtor.workers.dev";
+
+  // 숫자를 12,392 views 형태로 변환
+  function formatNumber(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  // 날짜 → "2 days ago"
+  function timeAgo(dateStr) {
+    const diff = (new Date() - new Date(dateStr)) / 1000;
+    const days = Math.floor(diff / 86400);
+    if (days < 1) return "Today";
+    if (days === 1) return "1 day ago";
+    return `${days} days ago`;
+  }
+
+  // 영상 길이(ISO 8601 → 3:18)
+  function formatDuration(iso) {
+    if (!iso) return "";
+    const match = iso.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
+    let h = (match[1] || "").replace("H", "");
+    let m = (match[2] || "").replace("M", "");
+    let s = (match[3] || "").replace("S", "");
+    h = h || 0; m = m || 0; s = s || 0;
+
+    if (h > 0) return `${h}:${m.toString().padStart(2,"0")}:${s.toString().padStart(2,"0")}`;
+    return `${m}:${s.toString().padStart(2,"0")}`;
+  }
+
+  async function loadVideos() {
+    const grid = document.getElementById("video-grid");
+
+    try {
+      const res = await fetch(API_URL);
+      const list = await res.json();
+
+      grid.innerHTML = "";
+
+      list.forEach(v => {
+        const card = document.createElement("article");
+        card.className = "video-card";
+
+        card.innerHTML = `
+          <a href="https://www.youtube.com/watch?v=${v.videoId}" target="_blank">
+            <img class="video-thumb" src="${v.thumbnail}" alt="">
+          </a>
+          <div class="video-info">
+            <div class="video-title">${v.title}</div>
+
+            <div class="video-meta">
+              ${formatNumber(v.views)} views ·
+              ${formatDuration(v.duration)} ·
+              ${timeAgo(v.publishedAt)}
+            </div>
+
+            <div class="video-desc">${v.description || ""}</div>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+    } catch (err) {
+      grid.innerHTML = "<p>Failed to load videos.</p>";
+      console.error(err);
+    }
+  }
+
+  loadVideos();
+</script>
+
 </body>
 </html>

@@ -5,7 +5,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -181,7 +182,7 @@ body {
   background: rgba(31, 41, 55, 0.8);
 }
 
-/* cards */
+/* ===== Cards ===== */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -197,6 +198,8 @@ body {
 
 .card img {
   width: 100%;
+  height: 220px;
+  object-fit: cover;
   border-radius: 16px;
   display: block;
   margin-bottom: 10px;
@@ -217,6 +220,49 @@ body {
   font-size: 14px;
   color: #d1d5db;
   margin-bottom: 14px;
+}
+
+/* ===== Collections ===== */
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.collection-card {
+  background: radial-gradient(circle at top, #111827 0, #020617 55%);
+  border: 1px solid rgba(55, 65, 81, 0.8);
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.collection-card > img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.collection-body {
+  padding: 16px 16px 18px;
+}
+
+.collection-title {
+  font-size: 18px;
+  margin: 0 0 6px;
+}
+
+.collection-text {
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+.ko {
+  font-size: 14px;
+  color: #9ca3af;
+  font-weight: 500;
+  margin-left: 6px;
 }
 
 /* badges / chips */
@@ -283,7 +329,8 @@ body {
 @media (max-width: 900px) {
   .card-grid,
   .embed-grid,
-  .contact-grid {
+  .contact-grid,
+  .collection-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -303,13 +350,3 @@ body {
     font-size: 36px;
   }
 }
-.card img {
-    width: 100%;
-    height: 220px;         /* 원하는 높이 */
-    object-fit: cover;     /* 자동 crop + 통일된 비율 유지 */
-    border-radius: 16px;
-    display: block;
-    margin-bottom: 10px;
-}
-
-

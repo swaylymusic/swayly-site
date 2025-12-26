@@ -1,171 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Swayly Music</title>
-  <link rel="stylesheet" href="css/main.css" />
+  <meta charset="UTF-8">
+  <title>Swayly Music – Cozy Jazz & Ambient Piano</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+        content="Swayly Music curates cozy jazz and ambient piano for quiet spaces, winter nights, and focused mornings.">
+<link rel="icon" href="/assets/images/favicon.ico" sizes="16x16" type="image/x-icon">
+<link rel="icon" href="/assets/images/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="/assets/images/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
 
-  <!-- ✅ HEADER (main.css가 기대하는 구조로 복구) -->
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="header-top">
-        <div class="brand-mark">SWAYLY</div>
+<header class="site-header">
+  <div class="header-inner">
 
-        <nav class="main-nav" aria-label="Main navigation">
-          <a class="active" href="index.html">Home</a>
-          <a href="releases.html">Releases</a>
-          <a href="playlist.html">Playlists</a>
-          <a href="collections.html">Collections</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-        </nav>
+    <div class="header-top">
+      <div class="brand-mark">Swayly Music</div>
+      <nav class="main-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About / Philosophy</a>
+        <a href="releases.html">Latest Releases</a>
+        <a href="playlist.html">Playlist Library</a>
+        <a href="contact.html">Contact & Licensing</a>
+      </nav>
+    </div>
+
+    <div class="header-main">
+      <h1>Swayly Music</h1>
+      <p>Comforting vibes, one quiet day at a time.</p>
+    </div>
+
+  </div>
+</header>
+
+
+<main class="page-wrap">
+
+  <!-- ============================= -->
+  <!-- Hero / Welcome Section -->
+  <!-- ============================= -->
+  <section class="section">
+    <div class="section-label">Swayly Music</div>
+    <h2 class="section-title">Cozy Jazz & Ambient Piano for Quiet Spaces</h2>
+    <p class="lead">
+      Slow melodies for winter nights, calm mornings, deep focus and gentle reflections. Quiet music that warms
+      the room without overwhelming the silence.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://open.spotify.com" target="_blank" rel="noopener">Listen on Spotify</a>
+      <a class="btn btn-ghost" href="https://www.youtube.com/@swaylymusic" target="_blank" rel="noopener">Watch on YouTube</a>
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- Playlist Highlight -->
+  <!-- ============================= -->
+  <section class="section">
+    <div class="section-label">Featured Playlist</div>
+    <h2 class="section-title">Winter Night Jazz · Quiet Focus</h2>
+    <p class="section-subtitle">
+      Soft piano, gentle jazz textures and long, breathing phrases. Perfect for deep work, reading, journaling
+      or late-night thoughts by the window.
+    </p>
+
+    <div class="embed-grid">
+      <div class="embed-box">
+        <!-- Spotify playlist (replace your_playlist_id) -->
+        <iframe src="https://open.spotify.com/embed/playlist/your_playlist_id"
+                loading="lazy"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+        </iframe>
       </div>
 
-      <div class="header-main">
-        <h1>Swayly Music</h1>
-        <p>Comforting vibes, one quiet day at a time.</p>
-
-        <div class="btn-row" style="justify-content:center;">
-          <a class="btn btn-primary" href="playlist.html">Listen on Spotify</a>
-          <a class="btn btn-ghost" href="https://www.youtube.com/@swaylymusic" target="_blank" rel="noopener">
-            Watch on YouTube
-          </a>
-        </div>
-
-        <div class="chip-row" style="justify-content:center; margin-top:14px;">
-          <span class="chip">Cozy Jazz</span>
-          <span class="chip">Ambient Piano</span>
-          <span class="chip">Quiet Focus</span>
-        </div>
+      <div class="embed-box">
+        <!-- YouTube playlist embed -->
+        <iframe src="https://www.youtube.com/embed/XgAI96pw2i4?si=9WTxtQXMLSREJCp3"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+        </iframe>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main class="page-wrap">
 
-    <!-- FEATURED -->
-    <section class="section">
-      <div class="section-label">Featured playlist</div>
-      <h2 class="section-title">Winter Night Jazz · Quiet Focus</h2>
-      <p class="section-subtitle">
-        Soft piano, gentle textures, and slow breathing space for focus and calm.
-      </p>
+  <!-- ============================= -->
+  <!-- About Section -->
+  <!-- ============================= -->
+  <section class="section">
+    <div class="section-label">About</div>
+    <h2 class="section-title">Music for quiet rooms and warm evenings</h2>
+    <p>
+      Swayly blends slow jazz and ambient piano textures for calm rooms, late-night desks and warm light.
+      Each track lives between careful harmonies, brushed cymbals, upright piano and soft-tone choices,
+      keeping the mood gentle and unhurried.
+    </p>
+  </section>
 
-      <div class="embed-grid">
-        <div class="embed-box">
-          <!-- ✅ 지금은 Daily Hymns 플레이리스트가 들어가 있으니,
-               원하면 Swayly 유튜브 플레이리스트로 바꿔줄게 -->
-          <iframe
-            src="https://www.youtube.com/embed/videoseries?list=PLtz0vCf6KQ4lxanv_8M_7zvFr4UX-hHGJ"
-            loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-        </div>
 
-        <!-- ✅ Spotify는 “나중을 위해” 안전하게 보관(레이아웃 안 깨짐) -->
-        <div class="embed-fallback">
-          <div class="embed-fallback-inner">
-            <div class="embed-fallback-label">Spotify</div>
-            <div class="embed-fallback-title">Playlist embed reserved</div>
-            <p class="embed-fallback-text">
-              Spotify embed is kept for future use. Add your playlist ID when ready.
-            </p>
+  <!-- ============================= -->
+  <!-- Latest Releases – AUTO UPDATES -->
+  <!-- ============================= -->
+  <section class="section">
+    <div class="section-label">Latest Releases</div>
+    <h2 class="section-title">Newest Tracks from YouTube</h2>
 
-            <!-- 나중에 활성화할 때만 아래 주석 해제 + YOUR_PLAYLIST_ID 교체 -->
-            <!--
-            <iframe
-              style="border-radius:12px"
-              src="https://open.spotify.com/embed/playlist/YOUR_PLAYLIST_ID"
-              width="100%"
-              height="352"
-              frameborder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy">
-            </iframe>
-            -->
+    <div class="card-grid" id="latest-release-grid">
+      <!-- 자동으로 채워짐 -->
+    </div>
+  </section>
 
-            <div class="btn-row" style="margin-top:14px;">
-              <a class="btn btn-ghost" href="playlist.html">Go to Playlists</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ABOUT -->
-    <section class="section">
-      <div class="section-label">About</div>
-      <h2 class="section-title">Music for quiet rooms and warm evenings</h2>
-      <p class="lead">
-        Swayly blends cozy jazz and ambient piano textures for calm rooms, late-night desks,
-        and slow mornings — keeping the mood unhurried and warm.
-      </p>
-    </section>
+  <!-- ============================= -->
+  <!-- Platforms Section -->
+  <!-- ============================= -->
+  <section class="section">
+    <div class="section-label">Listen</div>
+    <h2 class="section-title">Where to find Swayly Music</h2>
 
-    <!-- ✅ FOR YOUR MOMENT (문제였던 이미지 2개: 카드 안에 고정 높이로 출력됨) -->
-    <section class="section">
-      <div class="section-label">Collections</div>
-      <h2 class="section-title">For Your Moment</h2>
-      <p class="section-subtitle">
-        Two paths, one quiet heart — cozy listening and prayerful hymns.
-      </p>
+    <div class="chip-row">
+      <span class="chip">Spotify</span>
+      <span class="chip">Apple Music</span>
+      <span class="chip">YouTube & YouTube Music</span>
+      <span class="chip">TikTok</span>
+      <span class="chip">Background playlists for cafés & workspaces</span>
+    </div>
+  </section>
 
-      <div class="collection-grid">
-        <!-- Card 1 -->
-        <a class="collection-card" href="playlist.html" style="display:block; text-decoration:none; color:inherit;">
-          <img src="assets/images/swayly-music.jpg" alt="Swayly Music">
-          <div class="collection-body">
-            <h3 class="collection-title">Swayly Music</h3>
-            <p class="collection-text">Cozy jazz & ambient melodies for everyday quiet moments.</p>
-            <div class="chip-row">
-              <span class="chip">Cozy</span>
-              <span class="chip">Warm</span>
-              <span class="chip">Focus</span>
-            </div>
-          </div>
-        </a>
 
-        <!-- Card 2 -->
-        <a class="collection-card" href="daily-hymns.html" style="display:block; text-decoration:none; color:inherit;">
-          <img src="assets/images/daily-hymns.jpg" alt="Daily Hymns">
-          <div class="collection-body">
-            <h3 class="collection-title">Daily Hymns <span class="ko">매일성가</span></h3>
-            <p class="collection-text">Quiet sacred arrangements for prayer and reflection.</p>
-            <div class="chip-row">
-              <span class="chip">Prayer</span>
-              <span class="chip">Stillness</span>
-              <span class="chip">Reflection</span>
-            </div>
-          </div>
-        </a>
-      </div>
-    </section>
+  <!-- ============================= -->
+  <!-- Footer -->
+  <!-- ============================= -->
+  <footer class="site-footer">
+    <span>© 2025 Swayly Music · Cozy jazz & ambient piano for quiet spaces.</span>
+    <span>Contact · licensing:
+      <a href="mailto:swaylymusic@gmail.com">swaylymusic@gmail.com</a>
+    </span>
+  </footer>
 
-    <!-- LINKS -->
-    <section class="section">
-      <div class="section-label">Links</div>
-      <h2 class="section-title">Where to find Swayly Music</h2>
-      <div class="chip-row">
-        <a class="chip" href="https://www.youtube.com/@swaylymusic" target="_blank" rel="noopener" style="text-decoration:none;">YouTube</a>
-        <a class="chip" href="playlist.html" style="text-decoration:none;">Spotify</a>
-        <a class="chip" href="collections.html" style="text-decoration:none;">Collections</a>
-      </div>
-    </section>
+</main>
 
-    <footer class="site-footer">
-      <div>© Swayly Music</div>
-      <div>
-        <a href="contact.html" style="color:inherit; text-decoration:none; opacity:.8;">Contact</a>
-      </div>
-    </footer>
 
-  </main>
+<!-- ==================================================== -->
+<!-- JavaScript: Load Latest YouTube Releases Automatically -->
+<!-- ==================================================== -->
+<script>
+async function loadLatestVideos() {
+  const container = document.getElementById("latest-release-grid");
+
+  container.innerHTML = `
+    <div class="card loading-card">Loading latest releases...</div>
+  `;
+
+  try {
+    const res = await fetch("https://swayly-youtube.donlee-realtor.workers.dev");
+    const videos = await res.json();
+
+    container.innerHTML = "";
+
+    videos.forEach(video => {
+      const card = document.createElement("article");
+      card.className = "card";
+
+      card.innerHTML = `
+        <img src="${video.thumbnail}" alt="${video.title}">
+        <h3 class="card-title">${video.title}</h3>
+        <div class="card-meta">${new Date(video.publishedAt).toLocaleDateString()}</div>
+        <a class="btn btn-ghost"
+           href="https://www.youtube.com/watch?v=${video.videoId}"
+           target="_blank"
+           rel="noopener">Watch</a>
+      `;
+
+      container.appendChild(card);
+    });
+
+  } catch (error) {
+    container.innerHTML = "<p>Failed to load YouTube videos.</p>";
+    console.error(error);
+  }
+}
+
+loadLatestVideos();
+</script>
+
 
 </body>
 </html>
+

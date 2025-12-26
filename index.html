@@ -4,304 +4,168 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Swayly Music</title>
-
-  <!-- Your existing stylesheet -->
   <link rel="stylesheet" href="css/main.css" />
-
-  <!-- Index-only layout safeguards (prevents oversized images / keeps site tidy) -->
-  <style>
-    /* Page width + center */
-    .page-wrap{
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* Section spacing */
-    .section{
-      margin: 38px 0;
-    }
-    .section h2{
-      margin: 0 0 10px;
-    }
-    .section p{
-      margin: 0 0 16px;
-      opacity: .9;
-      line-height: 1.6;
-    }
-
-    /* Hero */
-    .hero{
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-      min-height: 210px;
-      display: flex;
-      align-items: flex-end;
-      padding: 28px 22px;
-    }
-    .hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,.10));
-      pointer-events:none;
-    }
-    .hero-inner{
-      position: relative;
-      max-width: 760px;
-    }
-    .hero h1{
-      margin: 0 0 6px;
-      font-size: clamp(22px, 3vw, 34px);
-    }
-    .hero .sub{
-      margin: 0 0 14px;
-      opacity: .92;
-    }
-    .btns{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top: 10px;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 10px 14px;
-      border-radius: 999px;
-      text-decoration:none;
-      font-size: 14px;
-      line-height: 1;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
-      backdrop-filter: blur(6px);
-    }
-    .btn.primary{
-      background: rgba(255,255,255,.14);
-    }
-
-    /* Embed wrapper */
-    .embed{
-      width: 100%;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-    }
-    .embed iframe{
-      width: 100%;
-      height: 380px;
-      border: 0;
-      display:block;
-    }
-    @media (max-width: 720px){
-      .embed iframe{ height: 240px; }
-    }
-
-    /* Collections grid (THIS fixes the “2 images too large” issue) */
-    .collections-grid{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-    @media (max-width: 860px){
-      .collections-grid{ grid-template-columns: 1fr; }
-    }
-
-    .collection-card{
-      display:block;
-      text-decoration:none;
-      color: inherit;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      transition: transform .15s ease, border-color .15s ease;
-    }
-    .collection-card:hover{
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,.18);
-    }
-
-    /* Fixed image box */
-    .collection-image{
-      width: 100%;
-      aspect-ratio: 4 / 3;   /* controls image size */
-      overflow:hidden;
-      background: rgba(255,255,255,.06);
-    }
-    .collection-image img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;     /* prevents oversized rendering */
-      display:block;
-    }
-
-    .collection-body{
-      padding: 14px 16px 18px;
-    }
-    .collection-body h3{
-      margin: 0 0 6px;
-      font-size: 16px;
-      letter-spacing: .2px;
-    }
-    .collection-body p{
-      margin: 0;
-      font-size: 13px;
-      opacity: .85;
-    }
-    .ko{
-      font-size: 12px;
-      opacity: .85;
-      margin-left: 6px;
-    }
-
-    /* Small meta row */
-    .meta-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      margin-top: 10px;
-      opacity: .9;
-      font-size: 13px;
-    }
-    .pill{
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      padding: 6px 10px;
-      border-radius: 999px;
-    }
-  </style>
 </head>
 
 <body>
 
-  <!-- Keep your existing header/nav structure if main.css expects it -->
+  <!-- ✅ HEADER (main.css가 기대하는 구조로 복구) -->
   <header class="site-header">
-    <div class="page-wrap">
-      <nav class="nav">
-        <a class="logo" href="index.html">Swayly</a>
-        <div class="nav-links">
+    <div class="header-inner">
+      <div class="header-top">
+        <div class="brand-mark">SWAYLY</div>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a class="active" href="index.html">Home</a>
           <a href="releases.html">Releases</a>
           <a href="playlist.html">Playlists</a>
           <a href="collections.html">Collections</a>
           <a href="about.html">About</a>
           <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+
+      <div class="header-main">
+        <h1>Swayly Music</h1>
+        <p>Comforting vibes, one quiet day at a time.</p>
+
+        <div class="btn-row" style="justify-content:center;">
+          <a class="btn btn-primary" href="playlist.html">Listen on Spotify</a>
+          <a class="btn btn-ghost" href="https://www.youtube.com/@swaylymusic" target="_blank" rel="noopener">
+            Watch on YouTube
+          </a>
         </div>
-      </nav>
+
+        <div class="chip-row" style="justify-content:center; margin-top:14px;">
+          <span class="chip">Cozy Jazz</span>
+          <span class="chip">Ambient Piano</span>
+          <span class="chip">Quiet Focus</span>
+        </div>
+      </div>
     </div>
   </header>
 
   <main class="page-wrap">
 
-    <!-- HERO (background image is controlled by your CSS or inline below) -->
-    <section class="hero section" style="background:url('assets/images/hero.jpg') center/cover no-repeat;">
-      <div class="hero-inner">
-        <h1>Swayly Music</h1>
-        <p class="sub">Comforting vibes, one quiet day at a time.</p>
-
-        <div class="btns">
-          <a class="btn primary" href="playlist.html">Listen on Spotify</a>
-          <a class="btn" href="https://www.youtube.com/@swaylymusic" target="_blank" rel="noopener">Watch on YouTube</a>
-        </div>
-
-        <div class="meta-row">
-          <span class="pill">Cozy Jazz</span>
-          <span class="pill">Ambient Piano</span>
-          <span class="pill">Quiet Focus</span>
-        </div>
-      </div>
-    </section>
-
     <!-- FEATURED -->
     <section class="section">
-      <h2>Winter Night Jazz · Quiet Focus</h2>
-      <p>Soft piano, gentle textures, and slow breathing space for focus and calm.</p>
+      <div class="section-label">Featured playlist</div>
+      <h2 class="section-title">Winter Night Jazz · Quiet Focus</h2>
+      <p class="section-subtitle">
+        Soft piano, gentle textures, and slow breathing space for focus and calm.
+      </p>
 
-      <div class="embed">
-        <!-- Replace with your Swayly playlist/video if needed -->
-        <iframe
-          src="https://www.youtube.com/embed/videoseries?list=PLtz0vCf6KQ4lxanv_8M_7zvFr4UX-hHGJ"
-          loading="lazy"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
+      <div class="embed-grid">
+        <div class="embed-box">
+          <!-- ✅ 지금은 Daily Hymns 플레이리스트가 들어가 있으니,
+               원하면 Swayly 유튜브 플레이리스트로 바꿔줄게 -->
+          <iframe
+            src="https://www.youtube.com/embed/videoseries?list=PLtz0vCf6KQ4lxanv_8M_7zvFr4UX-hHGJ"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
 
-      <!-- Spotify (reserved for future use — keep structure, no layout break) -->
-      <!--
-      <div class="embed" style="margin-top:14px;">
-        <iframe
-          style="border-radius:12px"
-          src="https://open.spotify.com/embed/playlist/YOUR_PLAYLIST_ID"
-          width="100%"
-          height="352"
-          frameborder="0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy">
-        </iframe>
+        <!-- ✅ Spotify는 “나중을 위해” 안전하게 보관(레이아웃 안 깨짐) -->
+        <div class="embed-fallback">
+          <div class="embed-fallback-inner">
+            <div class="embed-fallback-label">Spotify</div>
+            <div class="embed-fallback-title">Playlist embed reserved</div>
+            <p class="embed-fallback-text">
+              Spotify embed is kept for future use. Add your playlist ID when ready.
+            </p>
+
+            <!-- 나중에 활성화할 때만 아래 주석 해제 + YOUR_PLAYLIST_ID 교체 -->
+            <!--
+            <iframe
+              style="border-radius:12px"
+              src="https://open.spotify.com/embed/playlist/YOUR_PLAYLIST_ID"
+              width="100%"
+              height="352"
+              frameborder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy">
+            </iframe>
+            -->
+
+            <div class="btn-row" style="margin-top:14px;">
+              <a class="btn btn-ghost" href="playlist.html">Go to Playlists</a>
+            </div>
+          </div>
+        </div>
       </div>
-      -->
     </section>
 
     <!-- ABOUT -->
     <section class="section">
-      <h2>Music for quiet rooms and warm evenings</h2>
-      <p>
+      <div class="section-label">About</div>
+      <h2 class="section-title">Music for quiet rooms and warm evenings</h2>
+      <p class="lead">
         Swayly blends cozy jazz and ambient piano textures for calm rooms, late-night desks,
         and slow mornings — keeping the mood unhurried and warm.
       </p>
     </section>
 
-    <!-- FOR YOUR MOMENT (2 cards) -->
+    <!-- ✅ FOR YOUR MOMENT (문제였던 이미지 2개: 카드 안에 고정 높이로 출력됨) -->
     <section class="section">
-      <h2>For Your Moment</h2>
-      <p>Two paths, one quiet heart — cozy listening and prayerful hymns.</p>
+      <div class="section-label">Collections</div>
+      <h2 class="section-title">For Your Moment</h2>
+      <p class="section-subtitle">
+        Two paths, one quiet heart — cozy listening and prayerful hymns.
+      </p>
 
-      <div class="collections-grid">
+      <div class="collection-grid">
         <!-- Card 1 -->
-        <a class="collection-card" href="playlist.html">
-          <div class="collection-image">
-            <!-- ✅ This will NOT blow up anymore -->
-            <img src="assets/images/swayly-music.jpg" alt="Swayly Music">
-          </div>
+        <a class="collection-card" href="playlist.html" style="display:block; text-decoration:none; color:inherit;">
+          <img src="assets/images/swayly-music.jpg" alt="Swayly Music">
           <div class="collection-body">
-            <h3>Swayly Music</h3>
-            <p>Cozy jazz & ambient melodies for everyday quiet moments.</p>
+            <h3 class="collection-title">Swayly Music</h3>
+            <p class="collection-text">Cozy jazz & ambient melodies for everyday quiet moments.</p>
+            <div class="chip-row">
+              <span class="chip">Cozy</span>
+              <span class="chip">Warm</span>
+              <span class="chip">Focus</span>
+            </div>
           </div>
         </a>
 
         <!-- Card 2 -->
-        <a class="collection-card" href="daily-hymns.html">
-          <div class="collection-image">
-            <!-- ✅ This will NOT blow up anymore -->
-            <img src="assets/images/daily-hymns.jpg" alt="Daily Hymns">
-          </div>
+        <a class="collection-card" href="daily-hymns.html" style="display:block; text-decoration:none; color:inherit;">
+          <img src="assets/images/daily-hymns.jpg" alt="Daily Hymns">
           <div class="collection-body">
-            <h3>Daily Hymns <span class="ko">매일성가</span></h3>
-            <p>Quiet sacred arrangements for prayer and reflection.</p>
+            <h3 class="collection-title">Daily Hymns <span class="ko">매일성가</span></h3>
+            <p class="collection-text">Quiet sacred arrangements for prayer and reflection.</p>
+            <div class="chip-row">
+              <span class="chip">Prayer</span>
+              <span class="chip">Stillness</span>
+              <span class="chip">Reflection</span>
+            </div>
           </div>
         </a>
       </div>
     </section>
 
-    <!-- WHERE TO FIND -->
+    <!-- LINKS -->
     <section class="section">
-      <h2>Where to find Swayly Music</h2>
-      <div class="meta-row">
-        <a class="pill" href="https://www.youtube.com/@swaylymusic" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">YouTube</a>
-        <a class="pill" href="playlist.html" style="text-decoration:none; color:inherit;">Spotify</a>
-        <a class="pill" href="collections.html" style="text-decoration:none; color:inherit;">Collections</a>
+      <div class="section-label">Links</div>
+      <h2 class="section-title">Where to find Swayly Music</h2>
+      <div class="chip-row">
+        <a class="chip" href="https://www.youtube.com/@swaylymusic" target="_blank" rel="noopener" style="text-decoration:none;">YouTube</a>
+        <a class="chip" href="playlist.html" style="text-decoration:none;">Spotify</a>
+        <a class="chip" href="collections.html" style="text-decoration:none;">Collections</a>
       </div>
     </section>
 
-  </main>
+    <footer class="site-footer">
+      <div>© Swayly Music</div>
+      <div>
+        <a href="contact.html" style="color:inherit; text-decoration:none; opacity:.8;">Contact</a>
+      </div>
+    </footer>
 
-  <footer class="site-footer">
-    <div class="page-wrap">
-      <p style="opacity:.8; margin: 18px 0;">© Swayly Music</p>
-    </div>
-  </footer>
+  </main>
 
 </body>
 </html>

@@ -294,6 +294,39 @@ body {
   border: none;
 }
 
+/* Embed fallback (keeps layout stable when an iframe is not ready) */
+.embed-fallback {
+  background: radial-gradient(circle at top, #111827 0, #020617 60%);
+  border: 1px solid rgba(55, 65, 81, 0.8);
+  border-radius: 20px;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+}
+
+.embed-fallback-inner {
+  padding: 18px;
+}
+
+.embed-fallback-label {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.embed-fallback-title {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+
+.embed-fallback-text {
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: #d1d5db;
+}
+
 /* ===== Contact ===== */
 .contact-grid {
   display: grid;
